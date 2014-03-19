@@ -1,0 +1,6 @@
+# use robots.txt
+User-agent: *
+# open to all
+#Allow: /
+# close to all
+Disallow: /
