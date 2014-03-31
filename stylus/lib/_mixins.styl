@@ -32,6 +32,15 @@ font($alias, $name, $weight)
 		font-weight $weight
 		font-style: normal
 
+// size for blocks: width and height
+size()
+	if length(arguments) == 1
+		width arguments[0]
+		height arguments[0]
+	else
+		width arguments[0]
+		height arguments[1]
+	
 // clearfix
 clearfix()
 	if $ie
