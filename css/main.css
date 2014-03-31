@@ -207,13 +207,6 @@ th {
   float: left;
   width: 745px;
 }
-@font-face {
-  font-family: 'PFSquareSansProMedium';
-  src: url("../font/pfsquaresanspro-medium-webfont.eot");
-  src: url("../font/pfsquaresanspro-medium-webfont.eot?#iefix") format('embedded-opentype'), url("../font/pfsquaresanspro-medium-webfont.woff") format('woff'), url("../font/pfsquaresanspro-medium-webfont.ttf") format('truetype'), url("../font/pfsquaresanspro-medium-webfont.svg#PFSquareSansProMedium") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -230,4 +223,15 @@ body {
 }
 a {
   color: #008000;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
 }

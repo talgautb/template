@@ -1,0 +1,78 @@
+// element's positions
+-pos(type, args)
+	i = 0
+	position: unquote(type)
+	{args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+	{args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+
+absolute()
+	-pos('absolute', arguments)
+
+fixed()
+	-pos('fixed', arguments)
+
+// cross opacity
+opacity(n)
+	if n!= 0
+		-moz-opacity n
+		-khtml-opacity n
+		opacity n
+		if $ie
+			-ms-filter unquote('"progid:DXImageTransform.Microsoft.Alpha(Opacity='+n*100+')"')
+			filter unquote('alpha(opacity='+n*100+')')
+	else
+		opacity 0
+
+// font-face
+font($alias, $name, $weight)
+	@font-face
+		font-family $alias
+		src: url($fontPath + $name + ".eot")
+		src: url($fontPath + $name + ".eot?#iefix") format("embedded-opentype"), url($fontPath + $name + ".woff") format("woff"), url($fontPath + $name + ".ttf") format("truetype")
+		font-weight $weight
+		font-style: normal
+
+// clearfix
+clearfix()
+	if $ie
+		zoom 1
+	&:after
+	&:before
+		content ""
+		display table
+	&:after
+		clear both
+	
+// css3 from https://github.com/jney/stylus-mixins/tree/master/mixins
+border-radius()
+	-moz-border-radius arguments
+	-webkit-border-radius arguments
+	-khtml-border-radius arguments
+	border-radius arguments
+	if $ie
+		behavior unquote('url("../PIE.htc")')
+		
+box-shadow()
+	-webkit-box-shadow arguments
+	-moz-box-shadow arguments
+	box-shadow arguments
+
+transition()
+	-webkit-transition arguments
+	-moz-transition arguments
+	-o-transition arguments
+	-ms-transition arguments
+	transition arguments
+
+background-size()
+	-moz-background-size arguments
+	-webkit-background-size arguments
+	-o-background-size arguments
+	background-size arguments
+
+transform()
+	-webkit-transform arguments
+	-moz-transform arguments
+	-ms-transform arguments
+	-o-transform arguments
+	transform arguments
