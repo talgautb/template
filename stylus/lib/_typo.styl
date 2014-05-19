@@ -1,0 +1,23 @@
+// typography
+
+// for title h1-h6
+.h
+	font-weight 500
+	font-family inherit
+
+for x in 0..5
+	h{x+1}
+		@extend .h
+
+// use ... on line
+threedots()
+	white-space nowrap
+	overflow hidden
+	text-overflow ellipsis
+	display block
+
+// for list
+nolist()
+	list-style none
+	padding 0
+	margin 0

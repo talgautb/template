@@ -207,6 +207,16 @@ th {
   float: left;
   width: 745px;
 }
+.h,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  font-family: inherit;
+}
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -223,6 +233,13 @@ body {
 }
 a {
   color: #008000;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.hidden {
+  display: none;
 }
 .clearfix {
   zoom: 1;
