@@ -201,11 +201,11 @@ th {
 }
 .sidebar {
   float: left;
-  width: 215px;
+  width: $$sidebar-width;
 }
 .content {
   float: left;
-  width: 745px;
+  width: $mainwidth$sidebar-width;
 }
 .h,
 h1,
@@ -251,4 +251,10 @@ a:hover {
 }
 .clearfix:after {
   clear: both;
+}
+.header {
+  margin: 0;
+}
+.footer {
+  margin: 0;
 }

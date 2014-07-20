@@ -1,6 +1,5 @@
-# use robots.txt
+# www.robotstxt.org/
+
+# Allow crawling of all content
 User-agent: *
-# open to all
-#Allow: /
-# close to all
-Disallow: /
+Disallow:
