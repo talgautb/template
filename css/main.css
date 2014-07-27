@@ -127,7 +127,6 @@ select {
 }
 button,
 html input[type="button"],
-/* 1 */,
 input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
@@ -195,32 +194,42 @@ td,
 th {
   padding: 0;
 }
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.h,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: 500;
+  font-family: inherit;
+}
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
 .main {
   height: 100%;
   display: table;
 }
 .sidebar {
   float: left;
-  width: $$sidebar-width;
+  width: 215px;
 }
 .content {
   float: left;
-  width: $mainwidth$sidebar-width;
-}
-.h,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 500;
-  font-family: inherit;
-}
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  width: 745px;
 }
 html {
   height: 100%;
@@ -237,9 +246,6 @@ a {
 }
 a:hover {
   text-decoration: underline;
-}
-.hidden {
-  display: none;
 }
 .clearfix {
   zoom: 1;
