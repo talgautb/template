@@ -3,7 +3,7 @@
 
 # TEAM
 
-    talgautb -- frontend developer -- @gtalkkz
+    talgautb -- frontend developer -- @talgautb
 
 # TECHNOLOGY COLOPHON
 
