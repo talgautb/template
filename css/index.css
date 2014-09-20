@@ -195,8 +195,6 @@ th {
   padding: 0;
 }
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .h,
@@ -225,11 +223,11 @@ th {
 }
 .sidebar {
   float: left;
-  width: 215px;
+  width: $sidebar-width;
 }
 .content {
   float: left;
-  width: 745px;
+  width: $main-width$sidebar-width;
 }
 html {
   height: 100%;
@@ -241,7 +239,7 @@ body {
   color: #333;
 }
 a {
-  color: #008000;
+  color: #00f;
   text-decoration: none;
 }
 a:hover {
@@ -258,9 +256,9 @@ a:hover {
 .clearfix:after {
   clear: both;
 }
-.header {
+.footer {
   margin: 0;
 }
-.footer {
+.header {
   margin: 0;
 }
