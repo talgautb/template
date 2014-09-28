@@ -1,8 +1,1 @@
-# workspace files are user-specific
-*.sublime-workspace
-
-/node_modules/
-
-# dev files
-/css/
-/js/
+*.DS_Store
