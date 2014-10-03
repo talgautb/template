@@ -1,33 +1,33 @@
 // typography
 
 // for title h1-h6
-.h
-	font-weight 500
-	font-family inherit
+h()
+  font-weight 500
+  font-family inherit
 
 for x in 0..5
-	.h{x+1}
-		@extend .h
+  .h{x+1}
+    h()
 
 // use ... on line
 threedots()
-	white-space nowrap
-	overflow hidden
-	text-overflow ellipsis
-	display block
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+  display block
 
 // for list
 nolist()
-	list-style none
-	padding 0
-	margin 0
+  list-style none
+  padding 0
+  margin 0
 
 // hide block from h5bp
 .hidden
-	border 0
-	clip rect(0 0 0 0)
-	size(1px)
-	margin -1px
-	overflow hidden
-	padding 0
-	position absolute
+  border 0
+  clip rect(0 0 0 0)
+  size(1px)
+  margin -1px
+  overflow hidden
+  padding 0
+  position absolute
