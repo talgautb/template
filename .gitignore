@@ -6,3 +6,5 @@
 
 # task manager's files
 /node_modules/
+/bower_components/
+/assets/libs/

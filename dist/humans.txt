@@ -14,5 +14,5 @@
 	CoffeScript
 	Normalize
 	jQuery
-
 	Gulp
+    Bower

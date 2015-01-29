@@ -1,10 +1,13 @@
+//- all block use as mixin
+include shared/config
+include shared/_mixins
+
 doctype html
 html(lang='ru')
   
-  //- all block use as mixin
-  include shared/all
+  +head($sitename, $description, $keywords)
 
   body.page
-    p= $sitename
-
-    script(src='js/app.js')
+    .block Text
+    
+    +scripts
