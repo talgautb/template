@@ -96,32 +96,18 @@ gulp.task('jade', function() {
     }));
 });
 
-// PostCss
-gulp.task('autoprefixer', function () {
-  gulp.src(path.css+'/*.css')
-    .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.postcss([ autoprefixer(
-      'Android >= ' + pkg.browsers.android,
-      'Chrome >= ' + pkg.browsers.chrome,
-      'Firefox >= ' + pkg.browsers.firefox,
-      'Explorer >= ' + pkg.browsers.ie,
-      'iOS >= ' + pkg.browsers.ios,
-      'Opera >= ' + pkg.browsers.opera,
-      'Safari >= ' + pkg.browsers.safari
-      ) ]))
-    .pipe(plugins.sourcemaps.write('.'))
-    .pipe(gulp.dest(path.css));
-});
-
 // Stylus
 gulp.task('stylus', function() {
-    gulp.src(path.stylus+'/index.styl')
+  gulp.src(path.stylus+'/index.styl')
+    .pipe(plugins.sourcemaps.init())
     .pipe(plugins.stylus())
     .pipe(plugins.plumber({
       errorHandler: consoleErorr
       }))
     .pipe(plugins.concat('index.css'))
+    .pipe(plugins.postcss([ autoprefixer( { browsers: ['last 2 versions'] }) ]))
     .pipe(plugins.minifyCss())
+    .pipe(plugins.sourcemaps.write('.'))
     .pipe(gulp.dest(path.css))
     .pipe(browserSync.reload({
       stream: true
@@ -138,8 +124,8 @@ gulp.task('browser-sync', function() {
 });
 
 
-// zip files
-gulp.task('zip', function () {
+// compress files
+gulp.task('compress', function () {
   return gulp.src(path.html + '/**/*')
     .pipe(plugins.zip(pkg.name +'_'+ pkg.version +'.zip')) // cjs-template_0.0.8.zip
     .pipe(gulp.dest('./'));
@@ -152,18 +138,12 @@ gulp.task('default', ['browser-sync'], function() {
   gulp.watch(watched.jade, ['jade']);
 
   // watch stylus
-  gulp.watch('assets/libs/normalize.css/*.css', ['normalize']);
-
-  // watch stylus
   gulp.watch(watched.stylus, ['stylus']);
-
-  // autoprefixer
-  gulp.watch(path.css + '/*.css', ['autoprefixer']);
 
   // watch coffee
   gulp.watch(watched.coffee, ['coffee', 'js']);
 
 });
 
-gulp.task('build', ['jade', 'stylus', 'coffee', 'imagemin', 'zip']);
+gulp.task('build', ['jade', 'stylus', 'coffee', 'imagemin', 'compress']);
 

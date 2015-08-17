@@ -43,14 +43,5 @@
     "gulp-watch": "^4.3.4",
     "gulp-zip": "^3.0.2"
   },
-  "browsers": {
-    "android": 4,
-    "chrome": 38,
-    "firefox": 33,
-    "ie": 10,
-    "ios": 7,
-    "opera": 25,
-    "safari": 6
-  },
   "license": "MIT"
 }
