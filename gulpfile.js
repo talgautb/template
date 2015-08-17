@@ -8,7 +8,9 @@ var gulp = require('gulp'),
     // reload browser
     browserSync = require('browser-sync'),
     // load gulp plugins
-    plugins = require('gulp-load-plugins')();
+    plugins = require('gulp-load-plugins')(),
+    // use postcss with autoprefixer
+    autoprefixer = require('autoprefixer-core');
 
 /*-------------------------------------------------------------------
   Configuration
@@ -16,16 +18,16 @@ var gulp = require('gulp'),
 
 var path = {
 
-  coffee: "assets/coffeescript",
-  images: "assets/images",
-  jade: "assets/jade",
-  javascript: "assets/javascript",
-  stylus: "assets/stylus",
+  coffee: "./assets/coffeescript",
+  images: "./assets/images",
+  jade: "./assets/jade",
+  javascript: "./assets/javascript",
+  stylus: "./assets/stylus",
 
-  html: "dist/",
-  css: "dist/css",
-  js: "dist/js",
-  img: "dist/img"
+  html: "./dist/",
+  css: "./dist/css",
+  js: "./dist/js",
+  img: "./dist/img"
 
 };
 
@@ -94,6 +96,23 @@ gulp.task('jade', function() {
     }));
 });
 
+// PostCss
+gulp.task('autoprefixer', function () {
+  gulp.src(path.css+'/*.css')
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.postcss([ autoprefixer(
+      'Android >= ' + pkg.browsers.android,
+      'Chrome >= ' + pkg.browsers.chrome,
+      'Firefox >= ' + pkg.browsers.firefox,
+      'Explorer >= ' + pkg.browsers.ie,
+      'iOS >= ' + pkg.browsers.ios,
+      'Opera >= ' + pkg.browsers.opera,
+      'Safari >= ' + pkg.browsers.safari
+      ) ]))
+    .pipe(plugins.sourcemaps.write('.'))
+    .pipe(gulp.dest(path.css));
+});
+
 // Stylus
 gulp.task('stylus', function() {
     gulp.src(path.stylus+'/index.styl')
@@ -102,19 +121,10 @@ gulp.task('stylus', function() {
       errorHandler: consoleErorr
       }))
     .pipe(plugins.concat('index.css'))
-    .pipe(plugins.autoprefixer(
-      'Android >= ' + pkg.browsers.android,
-      'Chrome >= ' + pkg.browsers.chrome,
-      'Firefox >= ' + pkg.browsers.firefox,
-      'Explorer >= ' + pkg.browsers.ie,
-      'iOS >= ' + pkg.browsers.ios,
-      'Opera >= ' + pkg.browsers.opera,
-      'Safari >= ' + pkg.browsers.safari
-      ))
     .pipe(plugins.minifyCss())
     .pipe(gulp.dest(path.css))
     .pipe(browserSync.reload({
-      stream:true
+      stream: true
     }));
 });
 
@@ -146,6 +156,9 @@ gulp.task('default', ['browser-sync'], function() {
 
   // watch stylus
   gulp.watch(watched.stylus, ['stylus']);
+
+  // autoprefixer
+  gulp.watch(path.css + '/*.css', ['autoprefixer']);
 
   // watch coffee
   gulp.watch(watched.coffee, ['coffee', 'js']);
