@@ -6,11 +6,11 @@ var gulp = require('gulp'),
     // path to package.json
     pkg = require('./package.json'),
     // reload browser
-    browserSync = require('browser-sync'),
+    browserSync = require('browser-sync').create(),
     // load gulp plugins
     plugins = require('gulp-load-plugins')(),
     // use postcss with autoprefixer
-    autoprefixer = require('autoprefixer-core');
+    autoprefixer = require('autoprefixer');
 
 /*-------------------------------------------------------------------
   Configuration
@@ -31,9 +31,15 @@ var path = {
 
 };
 
+var copyFiles = [
+    './assets/.htaccess',
+    './assets/humans.txt',
+    './assets/robots.txt'
+    ];
+
 var watched = {
   stylus: path.stylus + '/**/*.styl',
-  coffee: path.coffee + '/**/*.coffee',
+  js: path.javascript + '/**/*.js',
   jade: path.jade + '/**/*.jade',
   img: path.images + '/*'
 };
@@ -54,25 +60,9 @@ gulp.task('imagemin', function() {
     .pipe(gulp.dest(path.img));
 });
 
-// Coffee
-gulp.task('coffee', function() {
-  gulp.src(watched.coffee)
-    .pipe(plugins.plumber({
-      errorHandler: consoleErorr
-      }))
-    .pipe(plugins.coffee({
-      bare: true
-    }))
-    .pipe(plugins.concat('main.js'))
-    .pipe(plugins.uglify({
-      mangle: true
-    }))
-    .pipe(gulp.dest(path.javascript));
-});
-
 // scripts
 gulp.task('js', function() {
-  gulp.src(['assets/libs/jquery/dist/jquery.min.js', 'assets/javascript/plugins/*.js', 'assets/javascript/main.js'])
+  gulp.src(['./assets/libs/jquery/dist/jquery.min.js', './assets/javascript/plugins/*.js', './assets/javascript/main.js'])
     .pipe(plugins.plumber({
       errorHandler: consoleErorr
       }))
@@ -108,21 +98,24 @@ gulp.task('stylus', function() {
     .pipe(plugins.postcss([ autoprefixer( { browsers: ['last 2 versions'] }) ]))
     .pipe(plugins.minifyCss())
     .pipe(plugins.sourcemaps.write('.'))
-    .pipe(gulp.dest(path.css))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
+    .pipe(gulp.dest(path.css));
+    // .pipe(browserSync.stream());
 });
 
 // Static server
 gulp.task('browser-sync', function() {
-  browserSync({
+  browserSync.init({
+  	files: ['./dist/**/*'],
     server: {
-      baseDir: "dist/"
+      baseDir: "./dist"
     }
   });
 });
 
+gulp.task('copy', function() {
+  gulp.src(copyFiles)
+    .pipe(gulp.dest(path.html));
+});
 
 // compress files
 gulp.task('compress', function () {
@@ -132,18 +125,23 @@ gulp.task('compress', function () {
 });
 
 // Watcher
-gulp.task('default', ['browser-sync'], function() {
+gulp.task('server', ['browser-sync'], function() {
 
   // watch jade
   gulp.watch(watched.jade, ['jade']);
 
   // watch stylus
-  gulp.watch(watched.stylus, ['stylus']);
+  gulp.watch(watched.stylus, ['stylus'], browserSync.reload);
 
-  // watch coffee
-  gulp.watch(watched.coffee, ['coffee', 'js']);
+  // watch JavaScript
+  gulp.watch(watched.js, ['js']);
 
 });
 
-gulp.task('build', ['jade', 'stylus', 'coffee', 'imagemin', 'compress']);
-
+gulp.task('build', [
+  'jade',
+  'stylus',
+  'imagemin',
+  'copy',
+  'compress'
+]);

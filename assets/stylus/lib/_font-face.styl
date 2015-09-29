@@ -2,7 +2,7 @@
 usefont($alias, $name, $weight)
 	@font-face
 		font-family $alias
-		src: url($fontPath + $name + ".eot")
-		src: url($fontPath + $name + ".eot?#iefix") format("embedded-opentype"), url($fontPath + $name + ".woff") format("woff"), url($fontPath + $name + ".ttf") format("truetype")
+		src: local($name + ".eot")
+		src: url($fontPath + $name + ".woff") format("woff"), url($fontPath + $name + ".ttf") format("truetype")
 		font-weight $weight
 		font-style: normal
