@@ -18,7 +18,6 @@ var gulp = require('gulp'),
 
 var path = {
 
-  coffee: "./assets/coffeescript",
   images: "./assets/images",
   jade: "./assets/jade",
   javascript: "./assets/javascript",
