@@ -1,0 +1,42 @@
+.modal
+  position fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index 100
+  overflow-y: auto
+  overflow-x: hidden
+
+  &__bg
+    background-color #000
+    opacity .5
+    position fixed
+    width 100%
+    height 100%
+    top: 0
+
+  &__wrap
+    position relative
+    z-index 1
+    padding 2rem
+    background-color: #fff
+    max-width 91rem
+    width 100%
+    margin 10rem auto 0
+
+  // &__header
+
+  // &__title
+
+  &__close
+    position absolute
+    right: 2rem
+    top: 2rem
+    // background-image: url('../img/modal__close.png')
+    background-position center center
+    background-repeat no-repeat
+    width 16px
+    height 16px
+    border: 0
+    background-color: transparent

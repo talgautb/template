@@ -1,31 +1,37 @@
-Cjs template
-======
+# Template
 
-Done by [talgautb](https://twitter.com/talgautb).
+What in template:
 
-I'm using this as a simple starting template for project.
+- [pug](https://pugjs.org/)
+- [stylus](http://stylus-lang.com/)
+- JavaScript
+- gulp (NPM)
 
-What in box:
-- [Jade](http://jade-lang.com/) for html
-- [Stylus](http://learnboost.github.io/stylus/) for css
+# How to start
 
-Also I use [Gulp](http://gulpjs.com) as task manager
-Enjoy!
+```
+npm i -g gulp babel
+npm i
+```
 
-## Getting Started
+## Commands
 
-You must have `npm` and `gulp`.
+**Start develop:**
 
-1. You can:
-    - [Download](https://github.com/talgautb/cjs/archive/master.zip) it
-    - use [Sublime Text plugin](http://code.tutsplus.com/articles/introducing-nettuts-fetch--net-23490)
-    - use git `git clone https://github.com/talgautb/cjs-template.git <YOU_PROJECT_NAME>`
+- `npm start` or `gulp start` (localhost:4001 - *default*)
 
-2. Go to the folder and install package: ```npm i && bower i``` if you have errors use ``` sudo npm i && bower i ```
+**Build project:**
 
-3. Start with: `gulp`
-4. to build template use `gulp build` (in the end of work)
+- `gulp build`
 
-## License
+**Create zip file from /dist/**
 
-[MIT](LICENSE.md)
+- `gulp zip`
+
+
+## TODO
+
+- add minify and uglify
+- add eslint
+- add cleaner
+- add babel for ES6

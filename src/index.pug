@@ -1,0 +1,19 @@
+//- all block use as mixin
+include shared/_mixins
+
+doctype html
+html.ua(lang='ru')
+
+  +head
+
+  body.page
+    header.page__header.header
+      //- +header
+
+    main.page__main.content
+      p It's work
+
+    footer.page__footer.footer
+      //- +footer
+
+    +scripts

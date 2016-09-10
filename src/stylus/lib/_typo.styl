@@ -1,4 +1,8 @@
-// typography
+// Test
+test()
+  border: 1px solid red
+
+// Typography
 
 // for title h1-h6
 h()
@@ -31,3 +35,22 @@ nolist()
   overflow hidden
   padding 0
   position absolute
+
+clearfix()
+  &::before,
+  &::after
+    content: ''
+    display: table
+
+  &::after
+    clear: both
+
+// For IE9+
+img
+  border: 0
+
+.is--hidden
+  display: none
+
+.is--overflow_hidden
+  overflow: hidden
