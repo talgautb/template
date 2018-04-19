@@ -1,24 +1,24 @@
-'use strict';
 // Builder
-import gulp from 'gulp';
-import watch from 'gulp-watch';
+const gulp = require('gulp');
+const watch = require('gulp-watch');
 // PostCSS
-import postcss from 'gulp-postcss';
-import autoprefixer from 'autoprefixer';
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
 // Tools
-import browserSync from 'browser-sync';
-import stylus from 'gulp-stylus';
-import pug from 'gulp-pug';
-import util from 'gulp-util';
-import plumber from 'gulp-plumber';
+const browserSync = require('browser-sync');
+const stylus = require('gulp-stylus');
+const pug = require('gulp-pug');
+const util = require('gulp-util');
+const plumber = require('gulp-plumber');
 
-import sourcemaps from 'gulp-sourcemaps';
-import concat from 'gulp-concat';
+const babel = require('gulp-babel');
+const sourcemaps = require('gulp-sourcemaps');
+const concat = require('gulp-concat');
 
-import imagemin from 'gulp-imagemin'
-import zip from 'gulp-zip'
+const imagemin = require('gulp-imagemin');
+const zip = require('gulp-zip');
 
-import pkg from './package.json'
+const pkg = require('./package.json');
 
 /**
  * Constants
@@ -95,6 +95,9 @@ gulp.task('js', () => {
     .pipe(plumber({
       errorHandler: consoleErorr
       }))
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
     .pipe(concat('main.js'))
     .pipe(gulp.dest('./dist/js/'));
 });
